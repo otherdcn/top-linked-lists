@@ -15,6 +15,22 @@ end
 
 test_linked_list(pets)
 
-pets.prepend('bearded dragon')
+new_animals = %w[bearded\ dragon goldfish]
+
+new_animals.each do |animal|
+  pets.prepend(animal)
+  test_linked_list(pets)
+end
+
+pets.append('salamnder')
+test_linked_list(pets)
+
+index = 6
+puts "Node at index #{index}: #{pets.at(index).value}"
+
+puts "Pop from pets: #{pets.pop.value}\n\n"
 
 test_linked_list(pets)
+
+puts "--------------"
+print pets
