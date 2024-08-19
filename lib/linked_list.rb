@@ -116,6 +116,30 @@ class LinkedList
     traversal << " nil.\n"
   end
 
+  def insert_at(value, index)
+    return nil if empty?
+    raise IndexError, "Index out of bounds (#{index} > #{size})" if index > size
+
+    node_at_index, predecessor = at(index)
+
+
+    node = Node.new(value)
+    predecessor.next_node = node
+    node.next_node = node_at_index
+  end
+
+  def remove_at(index)
+    return nil if empty?
+    raise IndexError, "Index out of bounds (#{index} > #{size})" if index > size
+
+    node_at_index, predecessor = at(index)
+
+    puts "*** Remove #{node_at_index.value} and then connect #{predecessor.value} to #{node_at_index.next_node.value} ***"
+
+    predecessor.next_node = node_at_index.next_node
+    node_at_index.next_node = nil
+  end
+
   private :search
 end
 
