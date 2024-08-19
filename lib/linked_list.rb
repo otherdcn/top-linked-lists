@@ -18,8 +18,11 @@ class LinkedList
 
     if empty?
       self.head = node
+    elsif head.next_node.nil?
+      self.head.next_node = node
+      self.tail = node
     else
-      self.tail.next_node = node unless tail.nil?
+      self.tail.next_node = node
       self.tail = node
     end
     self.size += 1
@@ -31,6 +34,10 @@ class LinkedList
     node = Node.new(value)
 
     if empty?
+      self.head = node
+    elsif head.next_node.nil?
+      node.next_node = head
+      self.tail = head
       self.head = node
     else
       node.next_node = head
