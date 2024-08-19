@@ -56,18 +56,21 @@ class LinkedList
     return head if index == 1
 
     node = head
+    previous_node = nil
     for i in 1...index
+      parent_node = node
       node = node.next_node
     end
 
-    node
+    [node, parent_node]
   end
 
   def pop
     return nil if empty?
 
     popped_node = tail # if only one element left in list, then tail will be pointing to head node as well
-    self.tail = at(size-1)
+    self.tail = at(size-1)[0]
+    self.tail.next_node = nil
     self.size -= 1
 
     popped_node

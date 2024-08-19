@@ -26,7 +26,7 @@ pets.append('salamnder')
 test_linked_list(pets)
 
 index = 6
-puts "Node at index #{index}: #{pets.at(index).value}"
+puts "Node at index #{index}: #{pets.at(index)[0].value}"
 
 puts "Pop from pets: #{pets.pop.value}\n\n"
 
