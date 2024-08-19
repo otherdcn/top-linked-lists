@@ -32,5 +32,17 @@ puts "Pop from pets: #{pets.pop.value}\n\n"
 
 test_linked_list(pets)
 
-puts "--------------"
+puts "--------------\n"
+
+puts "All nodes in the list: "
 print pets
+
+puts "--------------\n"
+
+value = "cat"
+puts "Searching for #{value}..."
+
+present_in_list = pets.contains(value)
+index_in_list = pets.find(value)
+puts "Present in pets' list: #{present_in_list}"
+puts "Index in list if present: #{index_in_list ? index_in_list : "nil"}"

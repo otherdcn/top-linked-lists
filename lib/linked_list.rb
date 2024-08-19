@@ -73,6 +73,34 @@ class LinkedList
     popped_node
   end
 
+  def search(value)
+    node = head
+    index = 1
+
+    until node.nil?
+      if value == node.value
+        return [true, node, index]
+      else
+        node = node.next_node
+        index += 1
+      end
+    end
+
+    [false, nil, nil]
+  end
+
+  def contains(value)
+    node_exist, node, index = search(value)
+
+    node_exist
+  end
+
+  def find(value)
+    node_exist, node, index = search(value)
+
+    index
+  end
+
   def to_s
     node = head
     traversal = ""
@@ -84,5 +112,7 @@ class LinkedList
     end
     traversal << " nil.\n"
   end
+
+  private :search
 end
 
