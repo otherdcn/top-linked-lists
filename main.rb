@@ -50,8 +50,8 @@ puts "Node at index #{index}: #{pets.at(index)[0].value}"
 puts "--------------------------------------------------------\n"
 
 puts "Pop from pets..."
-puts "Pop from pets: #{pets.pop.value}\n\n"
-puts "Pop from pets: #{pets.pop.value}\n\n"
+puts "Pop from pets: #{pets.pop.value}"
+puts "Pop from pets: #{pets.pop.value}"
 
 test_linked_list(pets)
 
@@ -84,3 +84,12 @@ puts "Remove node at index #{index}"
 pets.remove_at(index)
 
 test_linked_list(pets)
+
+puts "--------------------------------------------------------\n"
+
+puts "Shift from pets..."
+puts "Shift: #{pets.shift.value}"
+puts "Shift: #{pets.shift.value}\n\n"
+
+test_linked_list(pets)
+

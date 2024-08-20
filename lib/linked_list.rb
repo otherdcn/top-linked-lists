@@ -70,6 +70,16 @@ class LinkedList
     popped_node
   end
 
+  def shift
+    return nil if empty?
+
+    shifted_node = head
+    self.head = head.next_node
+    self.size -= 1
+
+    shifted_node
+  end
+
   def search(value)
     node = head
     index = 1
