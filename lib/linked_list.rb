@@ -19,9 +19,6 @@ class LinkedList
     if empty?
       self.head = node
       self.tail = node # I am considering one element in the list as both a head and a tail
-    elsif head.next_node.nil?
-      self.head.next_node = node
-      self.tail = node
     else
       self.tail.next_node = node
       self.tail = node
@@ -37,10 +34,6 @@ class LinkedList
     if empty?
       self.head = node
       self.tail = node # I am considering one element in the list as both a head and a tail
-    elsif head.next_node.nil?
-      node.next_node = head
-      self.tail = head
-      self.head = node
     else
       node.next_node = head
       self.head = node
@@ -52,6 +45,7 @@ class LinkedList
 
   def at(index)
     return nil if empty?
+
     raise IndexError, "Index out of bounds (#{index} > #{size})" if index > size
     return head if index == 1
 
@@ -105,6 +99,8 @@ class LinkedList
   end
 
   def to_s
+    return nil if empty?
+
     node = head
     traversal = ""
 
@@ -118,26 +114,44 @@ class LinkedList
 
   def insert_at(value, index)
     return nil if empty?
+
     raise IndexError, "Index out of bounds (#{index} > #{size})" if index > size
 
     node_at_index, predecessor = at(index)
 
+    return prepend(value) if node_at_index == head
 
     node = Node.new(value)
     predecessor.next_node = node
     node.next_node = node_at_index
+    self.size += 1
+
+    node_at_index
   end
 
   def remove_at(index)
     return nil if empty?
+
     raise IndexError, "Index out of bounds (#{index} > #{size})" if index > size
 
     node_at_index, predecessor = at(index)
 
-    puts "*** Remove #{node_at_index.value} and then connect #{predecessor.value} to #{node_at_index.next_node.value} ***"
+    if node_at_index == head
+      self.head = head.next_node
+      node_at_index.next_node = nil
+      self.tail = nil if node_at_index == tail # in case of deleting the only node in list
 
-    predecessor.next_node = node_at_index.next_node
-    node_at_index.next_node = nil
+      self.size -= 1
+    elsif node_at_index == tail
+      self.pop
+    else
+      predecessor.next_node = node_at_index.next_node
+      node_at_index.next_node = nil
+
+      self.size -= 1
+    end
+
+    node_at_index
   end
 
   private :search

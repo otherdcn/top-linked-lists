@@ -74,13 +74,13 @@ index = 5
 puts "Insert #{value} at index #{index}"
 pets.insert_at(value, index)
 
-puts pets
+test_linked_list(pets)
 
 puts "--------------------------------------------------------\n"
 
-puts "Remove animal at certain index in pets "
+puts "Remove animal at certain index in pets..."
 index = 3
 puts "Remove node at index #{index}"
 pets.remove_at(index)
 
-puts pets
+test_linked_list(pets)
