@@ -47,7 +47,7 @@ class LinkedList
     return nil if empty?
 
     raise IndexError, "Index out of bounds (#{index} > #{size})" if index > size
-    return head if index == 1
+    return [head, nil] if index == 1
 
     node = head
     previous_node = nil
@@ -75,6 +75,7 @@ class LinkedList
 
     shifted_node = head
     self.head = head.next_node
+    shifted_node.next_node = nil
     self.size -= 1
 
     shifted_node
@@ -136,7 +137,7 @@ class LinkedList
     node.next_node = node_at_index
     self.size += 1
 
-    node_at_index
+    node
   end
 
   def remove_at(index)
@@ -163,6 +164,46 @@ class LinkedList
 
     node_at_index
   end
+
+  def each
+    return nil if empty?
+
+    node = head
+
+    until node.nil?
+      yield node
+
+      node = node.next_node
+    end
+  end
+
+  def reverse
+    return nil if empty?
+
+    new_linked_list = LinkedList.new
+
+    self.each { |node| new_linked_list.prepend(node.value) }
+
+    new_linked_list
+  end
+
+  def reverse!
+    return nil if empty?
+
+    temp_head = shift
+    self.tail = temp_head
+
+    until empty?
+      node = shift
+
+      node.next_node = temp_head
+
+      temp_head = node
+    end
+
+    self.head = temp_head
+  end
+
 
   private :search
 end
