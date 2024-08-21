@@ -110,7 +110,7 @@ class LinkedList
   end
 
   def to_s
-    return nil if empty?
+    return "" if empty?
 
     node = head
     traversal = ""
@@ -203,7 +203,6 @@ class LinkedList
 
     self.head = temp_head
   end
-
 
   private :search
 end
