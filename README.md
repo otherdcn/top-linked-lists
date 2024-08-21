@@ -26,6 +26,20 @@ Use the following command to run the application:
 ruby main.rb
 ```
 
+Examples of features/abilities of Linked Lists:
+1. Appending to a list with `LinkedList#append`
+![Image 1](./assets/1.png)
+2. Prepending to a list with `LinkedList#prepend`
+![Image 2](./assets/2.png)
+3. Finding nodes using `LinkedList#at`, and popping/removing nodes using `LinkedList#pop`
+![Image 3](./assets/3.png)
+4. Shifting/ removing from top using `LinkedList#shift`
+![Image 4](./assets/4.png)
+5. Checking if list contains a node `LinkedList#contains` and finding a node's index in list using `LinkedList#find`
+![Image 5](./assets/5.png)
+6. Inserting and removing nodes from random indices using `LinkedList#insert_at` and `LinkedList#remove_at`
+![Image 6](./assets/6.png)
+
 ## Contributing
 If you feel the need to try it out and perhaps contribute:
 1. Fork the repository.
