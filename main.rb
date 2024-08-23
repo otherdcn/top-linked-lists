@@ -1,12 +1,13 @@
-require_relative 'lib/linked_list'
+require_relative 'lib/linked_list_singly'
+require_relative 'lib/linked_list_doubly'
 
 puts "Create and mess around with Linked Lists!\n\n"
 
-list = LinkedList.new
+list = LinkedList::Singly.new
 operation = 1
 
+=begin
 until operation.zero?
-
   operations = [
     "Quit/Exit program",
     "Print list",
@@ -113,3 +114,99 @@ until operation.zero?
 
   puts "\n------------------------------------------\n\n"
 end
+=end
+
+singly_list = LinkedList::Singly.new
+operation = 1
+
+animals = %w[dog cat parrot hasmter]
+
+animals.each do |animal|
+  singly_list.append animal
+end
+
+puts singly_list
+
+puts "*****************************************"
+
+def check_node_at(index, doubly_list)
+  node = doubly_list.at(index)
+  next_node = node.next_node ? node.next_node.value : "n/a"
+  previous_node = node.previous_node ? node.previous_node.value : "n/a"
+
+  puts "Node at index #{index}: #{node.value}"
+  puts "Previous: #{previous_node}"
+  puts "Next: #{next_node}"
+end
+
+def iterate_via_each(doubly_list)
+  doubly_list.each do |node|
+    #node = doubly_list.at(index)
+    next_node = node.next_node ? node.next_node.value : "n/a"
+    previous_node = node.previous_node ? node.previous_node.value : "n/a"
+
+    puts "Node: #{node.value}"
+    puts "Previous: #{previous_node}"
+    puts "Next: #{next_node}"
+    puts ""
+  end
+end
+
+doubly_list = LinkedList::Doubly.new
+operation = 1
+
+animals.each do |animal|
+  doubly_list.append animal
+end
+
+puts doubly_list
+
+puts "----------------------------------------"
+
+iterate_via_each(doubly_list)
+
+puts doubly_list
+
+puts "----------------------------------------"
+
+index = 2
+value = "horse"
+puts "Insert #{value} at #{index}"
+doubly_list.insert_at(value, index)
+
+iterate_via_each(doubly_list)
+
+puts ""
+
+puts doubly_list
+
+puts "----------------------------------------"
+
+index = 2
+popped_node = doubly_list.pop
+puts "Popped node: #{popped_node.value}"
+
+puts ""
+
+iterate_via_each(doubly_list)
+
+puts doubly_list
+
+puts "----------------------------------------"
+
+index = 4
+removed_node = doubly_list.remove_at(index)
+
+puts "Removed #{removed_node.value} at #{index}"
+
+puts ""
+
+puts doubly_list
+
+iterate_via_each(doubly_list)
+
+puts ""
+
+puts doubly_list
+
+puts "----------------------------------------"
