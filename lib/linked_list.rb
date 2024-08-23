@@ -109,7 +109,7 @@ class LinkedList
     index
   end
 
-  def to_s
+  def traverse
     return "" if empty?
 
     node = head
@@ -118,9 +118,13 @@ class LinkedList
     traversal << "( #{node.value} ) -> "
     while node.next_node != nil
       node = node.next_node
-      traversal << " ( #{node.value} ) -> "
+      traversal << "( #{node.value} ) -> "
     end
-    traversal << " nil.\n"
+    traversal << "nil.\n"
+  end
+
+  def to_s
+    return traverse
   end
 
   def insert_at(value, index)
