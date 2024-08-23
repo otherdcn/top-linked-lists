@@ -1,7 +1,6 @@
 require_relative 'node'
 
 module LinkedList
-  #LINKED_LIST_TYPE = [SinglyLinkedNode, DoublyLinkedNode]
   LINKED_LIST_TYPE = {
     singly_linked: SinglyLinkedNode,
     doubly_linked: DoublyLinkedNode
@@ -84,6 +83,7 @@ module LinkedList
       shifted_node = head
       self.head = head.next_node
       shifted_node.next_node = nil
+      #self.tail = nil if node_at_index == tail # in case of deleting the only node in list
       self.size -= 1
 
       shifted_node
