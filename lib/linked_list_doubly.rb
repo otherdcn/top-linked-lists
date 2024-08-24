@@ -2,7 +2,6 @@ module LinkedList
   class Doubly < Singly
     def append(value, type = :doubly_linked)
       node = LINKED_LIST_TYPE[type].new(value)
-      puts "Creating a #{node.class} object!"
 
       if empty?
         self.head = node
@@ -54,9 +53,9 @@ module LinkedList
 
       shifted_node = head
       self.head = head.next_node
-      self.head.previous_node = nil
+      self.head.previous_node = nil if head
       shifted_node.next_node = nil
-      #self.tail = nil if node_at_index == tail # in case of deleting the only node in list
+      self.tail = nil if shifted_node == tail # in case of deleting the only node in list
       self.size -= 1
 
       shifted_node

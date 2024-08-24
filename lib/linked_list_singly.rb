@@ -21,7 +21,6 @@ module LinkedList
 
     def append(value, type = :singly_linked)
       node = LINKED_LIST_TYPE[type].new(value)
-      puts "Creating a #{node.class} object!"
 
       if empty?
         self.head = node
@@ -83,7 +82,7 @@ module LinkedList
       shifted_node = head
       self.head = head.next_node
       shifted_node.next_node = nil
-      #self.tail = nil if node_at_index == tail # in case of deleting the only node in list
+      self.tail = nil if shifted_node == tail # in case of deleting the only node in list
       self.size -= 1
 
       shifted_node
@@ -202,7 +201,13 @@ module LinkedList
     def reverse!
       return nil if empty?
 
+      # Within the method, the shift method is called multiple times
+      # and each call decrements the size instance variable.
+      # Therefore, we need to save current size and re-assign value
+      # at the end
+      list_size = size
       temp_head = shift
+
       self.tail = temp_head
 
       until empty?
@@ -213,6 +218,7 @@ module LinkedList
         temp_head = node
       end
 
+      self.size = list_size
       self.head = temp_head
     end
 
