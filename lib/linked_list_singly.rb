@@ -222,6 +222,14 @@ module LinkedList
       self.head = temp_head
     end
 
+    def examine_node(index)
+      node_at_index, _ = at(index)
+      node = node_at_index.value
+      next_node = node_at_index.next_node ? node_at_index.next_node.value : "null"
+
+      "Node: #{node}\nNext: #{next_node}"
+    end
+
     private :search
   end
 end

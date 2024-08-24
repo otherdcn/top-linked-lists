@@ -123,5 +123,14 @@ module LinkedList
 
       node_at_index
     end
+
+    def examine_node(index)
+      node_at_index = at(index)
+      node = node_at_index.value
+      previous_node = node_at_index.previous_node ? node_at_index.previous_node.value : "null"
+      next_node = node_at_index.next_node ? node_at_index.next_node.value : "null"
+
+      "Node: #{node}\nPrevious: #{previous_node}\nNext: #{next_node}"
+    end
   end
 end
