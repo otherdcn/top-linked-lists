@@ -134,7 +134,7 @@ module LinkedList
       return traverse
     end
 
-    def insert_at(value, index)
+    def insert_at(value, index, type = :singly_linked)
       return nil if empty?
 
       raise IndexError, "Index out of bounds (#{index} > #{size})" if index > size
@@ -143,7 +143,7 @@ module LinkedList
 
       return prepend(value) if node_at_index == head
 
-      node = Node.new(value)
+      node = LINKED_LIST_TYPE[type].new(value)
       predecessor.next_node = node
       node.next_node = node_at_index
       self.size += 1
