@@ -3,10 +3,26 @@ require_relative 'lib/linked_list_doubly'
 
 puts "Create and mess around with Linked Lists!\n\n"
 
-list = LinkedList::Singly.new
+list_choice = 0
+
+until list_choice.between?(1,2)
+  puts "1. Singly linked list"
+  puts "2. Doubly linked list"
+  print "Which linked list would you like to create: "
+  list_choice = gets.chomp.to_i
+
+  list = if list_choice == 1
+           LinkedList::Singly.new
+         elsif list_choice == 2
+           LinkedList::Doubly.new
+         else
+           puts "Wrong input #{list_choice}, please type 1 or 2...\n\n"
+         end
+end
+
+puts "\nCreated a #{list.class} Linked List!\n\n"
 operation = 1
 
-=begin
 until operation.zero?
   operations = [
     "Quit/Exit program",
@@ -20,7 +36,8 @@ until operation.zero?
     "Find index of value",
     "Insert item at specific index",
     "Remove iitem at specific index",
-    "Reverse the list"
+    "Reverse the list",
+    "Examine node"
   ]
 
   operations.each_with_index do |operation, index|
@@ -60,7 +77,11 @@ until operation.zero?
       print "Enter index: "
       user_index = gets.chomp.to_i
 
-      puts "Item at #{user_index}: #{list.at(user_index)[0].value}"
+      if list.instance_of? LinkedList::Singly
+        puts "Item at #{user_index}: #{list.at(user_index)[0].value}"
+      elsif list.instance_of? LinkedList::Doubly
+        puts "Item at #{user_index}: #{list.at(user_index).value}"
+      end
     when 5
       puts "Removing from the end of list"
 
@@ -91,8 +112,9 @@ until operation.zero?
       print "Enter index: "
       user_index = gets.chomp.to_i
 
-      puts "Inserted #{user_value} at #{user_index}."
       list.insert_at(user_value, user_index)
+
+      puts "Inserted #{user_value} at #{user_index}."
     when 10
       puts "Removing an item at specific index"
 
@@ -105,6 +127,13 @@ until operation.zero?
 
       list.reverse!
       puts list
+    when 12
+      puts "Examining node"
+
+      print "Enter index: "
+      user_index = gets.chomp.to_i
+
+      puts list.examine_node(user_index)
     else
       puts "Incorrect input #{operation}, type 0-11."
     end
@@ -114,99 +143,4 @@ until operation.zero?
 
   puts "\n------------------------------------------\n\n"
 end
-=end
 
-singly_list = LinkedList::Singly.new
-operation = 1
-
-animals = %w[dog cat parrot hasmter]
-
-animals.each do |animal|
-  singly_list.append animal
-end
-
-puts singly_list
-
-puts "*****************************************"
-
-def check_node_at(index, doubly_list)
-  node = doubly_list.at(index)
-  next_node = node.next_node ? node.next_node.value : "n/a"
-  previous_node = node.previous_node ? node.previous_node.value : "n/a"
-
-  puts "Node at index #{index}: #{node.value}"
-  puts "Previous: #{previous_node}"
-  puts "Next: #{next_node}"
-end
-
-def iterate_via_each(doubly_list)
-  doubly_list.each do |node|
-    #node = doubly_list.at(index)
-    next_node = node.next_node ? node.next_node.value : "n/a"
-    previous_node = node.previous_node ? node.previous_node.value : "n/a"
-
-    puts "Node: #{node.value}"
-    puts "Previous: #{previous_node}"
-    puts "Next: #{next_node}"
-    puts ""
-  end
-end
-
-doubly_list = LinkedList::Doubly.new
-operation = 1
-
-animals.each do |animal|
-  doubly_list.append animal
-end
-
-puts doubly_list
-
-puts "----------------------------------------"
-
-iterate_via_each(doubly_list)
-
-puts doubly_list
-
-puts "----------------------------------------"
-
-index = 2
-value = "horse"
-puts "Insert #{value} at #{index}"
-doubly_list.insert_at(value, index)
-
-iterate_via_each(doubly_list)
-
-puts ""
-
-puts doubly_list
-
-puts "----------------------------------------"
-
-index = 2
-popped_node = doubly_list.pop
-puts "Popped node: #{popped_node.value}"
-
-puts ""
-
-iterate_via_each(doubly_list)
-
-puts doubly_list
-
-puts "----------------------------------------"
-
-index = 4
-removed_node = doubly_list.remove_at(index)
-
-puts "Removed #{removed_node.value} at #{index}"
-
-puts ""
-
-puts doubly_list
-
-iterate_via_each(doubly_list)
-
-puts ""
-
-puts doubly_list
-
-puts "----------------------------------------"
