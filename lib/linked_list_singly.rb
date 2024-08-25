@@ -201,10 +201,6 @@ module LinkedList
     def reverse!
       return nil if empty?
 
-      # Within the method, the shift method is called multiple times
-      # and each call decrements the size instance variable.
-      # Therefore, we need to save current size and re-assign value
-      # at the end
       list_size = size
       temp_head = shift
 

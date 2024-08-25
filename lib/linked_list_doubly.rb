@@ -124,6 +124,36 @@ module LinkedList
       node_at_index
     end
 
+    def reverse
+      raise StandardError, "The reverse method is not yet avaialble for Doubly class"
+    end
+
+    def reverse!
+=begin
+      return nil if empty?
+
+      list_size = size
+      temp_head = shift
+      temp_head.previous_node = head
+
+      self.tail = temp_head
+
+      until empty?
+        node = shift
+
+        node.previous_node = node.next_node
+        node.next_node = temp_head
+
+        temp_head = node
+      end
+
+      self.size = list_size
+      self.head = temp_head
+=end
+      raise StandardError, "The reverse! method is not yet avaialble for Doubly class"
+      nil
+    end
+
     def examine_node(index)
       node_at_index = at(index)
       node = node_at_index.value
