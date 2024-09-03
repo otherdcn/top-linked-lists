@@ -1,6 +1,4 @@
 # Linked Lists
-A short description of your project goes here.
-
 Following the [TOP (The Odin Project)](https://www.theodinproject.com/lessons/ruby-linked-lists) course and developing a linked list project to practice my DSA.
 
 ## Table of Contents
